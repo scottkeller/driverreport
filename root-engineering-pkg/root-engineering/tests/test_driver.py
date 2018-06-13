@@ -83,6 +83,19 @@ class TestDriver(unittest.TestCase):
         # Total time should now be 100
         self.assertEqual(mydriver.total_time, 100)
 
+    def test_avg_speed(self):
+        mydriver = Driver('Scott')
+
+        self.assertEqual(mydriver.avg_speed, 0)
+
+        mydriver.add_trip('07:15', '07:45', 17.3)
+
+        self.assertEqual(mydriver.avg_speed, 35)
+
+        mydriver.add_trip('06:12', '06:32', 21.8)
+
+        self.assertEqual(mydriver.avg_speed, 47)
+
 
 
 
