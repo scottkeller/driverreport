@@ -17,6 +17,7 @@ class TestDriver(unittest.TestCase):
         self.assertEqual(mytrip.start_time.time().strftime(TIME_FORMAT), '07:00')
         self.assertEqual(mytrip.end_time.time().strftime(TIME_FORMAT), '07:50')
         self.assertEqual(mytrip.distance, 39.1)
+        self.assertEqual(mytrip.duration, 50)
 
 
 
