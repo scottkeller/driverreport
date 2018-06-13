@@ -4,7 +4,7 @@ from core.trip import Trip
 # Constants
 TIME_FORMAT = '%H:%M'
 
-class TestDriver(unittest.TestCase):
+class TestTrip(unittest.TestCase):
 
     def setUp(self):
         self.trip = Trip
