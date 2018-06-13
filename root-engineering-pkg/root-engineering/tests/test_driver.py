@@ -67,6 +67,22 @@ class TestDriver(unittest.TestCase):
         # Total distance should now be 102
         self.assertEqual(mydriver.total_distance, 102)
 
+    def test_total_time(self):
+        mydriver = Driver('Scott')
+
+        # Total time should be 0 if there are no trips
+        self.assertEqual(mydriver.total_time, 0)
+
+        mydriver.add_trip('01:00', '1:20', 21)
+
+        # Total time should now be 20
+        self.assertEqual(mydriver.total_time, 20)
+
+        mydriver.add_trip('11:00', '12:20', 81)
+
+        # Total time should now be 100
+        self.assertEqual(mydriver.total_time, 100)
+
 
 
 
