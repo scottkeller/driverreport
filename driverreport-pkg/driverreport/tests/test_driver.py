@@ -112,6 +112,33 @@ class TestDriver(unittest.TestCase):
 
         self.assertEqual(mydriver.avg_speed, 47)
 
+    def test_invalid_avg_speed(self):
+        """Tests trips are discarded that average less than 5mph or more than 100mph"""
+        mydriver = Driver('Scott')
+
+        # 4mph average should not be added
+        mydriver.add_trip('07:15', '07:45', 2)
+
+        self.assertEqual(len(mydriver.trips), 0)
+
+        # 101 mph average should not be added
+        mydriver.add_trip('17:54', '17:59', 8.4)
+
+        self.assertEqual(len(mydriver.trips), 0)
+
+        # 5mph average should be added
+        mydriver.add_trip('07:15', '07:45', 2.5)
+
+        self.assertEqual(len(mydriver.trips), 1)
+
+        # 100 mph average should be added
+        mydriver.add_trip('17:54', '17:59', 8.3)
+
+        self.assertEqual(len(mydriver.trips), 2)
+
+
+
+
 
 
 
