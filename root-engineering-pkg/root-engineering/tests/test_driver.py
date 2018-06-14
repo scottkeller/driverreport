@@ -90,7 +90,7 @@ class TestDriver(unittest.TestCase):
 
         mydriver.add_trip('07:15', '07:45', 17.3)
 
-        self.assertEqual(mydriver.avg_speed, 35)
+        self.assertEqual(mydriver.avg_speed, 34)
 
         mydriver.add_trip('06:12', '06:32', 21.8)
 

@@ -9,7 +9,7 @@ class TestMain(unittest.TestCase):
 
 
     def test_report_from_input(self):
-        expected_output = "Alex: 42.0 miles @ 34 mph\nDan: 39.1 miles @ 47 mph\nBob: 0 miles"
+        expected_output = "Alex: 42 miles @ 34 mph\nDan: 39 miles @ 47 mph\nBob: 0 miles"
         self.assertEqual(driver_report('./input.txt'), expected_output)
 
 
