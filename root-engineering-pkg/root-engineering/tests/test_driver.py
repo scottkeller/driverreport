@@ -1,3 +1,7 @@
+"""
+MODULE: test_driver.py
+DESCRIPTION: Runs unit tests on the driver module
+"""
 import unittest
 from core.driver import Driver
 from core.trip import Trip
@@ -6,17 +10,24 @@ from core.trip import Trip
 TIME_FORMAT = '%H:%M'
 
 class TestDriver(unittest.TestCase):
+    """
+    Unit tests for the driver.Driver class
+    """
 
     def setUp(self):
+        """adds Driver class to TestDriver class before each test method call"""
         self.driver = Driver
 
     def test_driver_exists(self):
+        """Tests that  self.driver exists"""
         self.assertIsNotNone(self.driver)
 
     def test_driver_name(self):
+        """Tests that names can be correctly added """
         self.assertEqual(self.driver('Scott').name, 'Scott')
 
     def test_add_single_trip(self):
+        """Tests adding a single trip"""
         mydriver = Driver('Scott')
         mydriver.add_trip('01:17', '3:21', 133)
 
@@ -31,15 +42,17 @@ class TestDriver(unittest.TestCase):
         self.assertEqual(mydriver.trips[0].duration, 124)
 
     def test_multiple_trips(self):
+        """Tests adding multiple trips"""
         mydriver = Driver('Scott')
         mytrips = [
-                    Trip('02:30', '13:54' ,855),
-                    Trip('14:30', '14:31', 1.5),
-                    Trip('11:11', '12:24', 70)
-                ]
+            Trip('02:30', '13:54', 855),
+            Trip('14:30', '14:31', 1.5),
+            Trip('11:11', '12:24', 70)
+        ]
         # Add each trip defined above to mydriver
         for trip in mytrips:
-            mydriver.add_trip(trip.start_time.strftime(TIME_FORMAT), trip.end_time.strftime(TIME_FORMAT), trip.distance)
+            mydriver.add_trip(trip.start_time.strftime(TIME_FORMAT),
+                              trip.end_time.strftime(TIME_FORMAT), trip.distance)
         #There should now be 3 trips
         self.assertEqual(len(mydriver.trips), 3)
 
@@ -52,6 +65,7 @@ class TestDriver(unittest.TestCase):
             self.assertEqual(trip.duration, mytrips[i].duration)
 
     def test_total_distance(self):
+        """Tests total distance calculation"""
         mydriver = Driver('Scott')
 
         # Total distance should be 0 if there are no trips
@@ -68,6 +82,7 @@ class TestDriver(unittest.TestCase):
         self.assertEqual(mydriver.total_distance, 102)
 
     def test_total_time(self):
+        """Tests total driving time calculation"""
         mydriver = Driver('Scott')
 
         # Total time should be 0 if there are no trips
@@ -84,6 +99,7 @@ class TestDriver(unittest.TestCase):
         self.assertEqual(mydriver.total_time, 100)
 
     def test_avg_speed(self):
+        """Tests average speed calculation"""
         mydriver = Driver('Scott')
 
         self.assertEqual(mydriver.avg_speed, 0)

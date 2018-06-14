@@ -1,37 +1,59 @@
+"""
+MODULE: core.driver
+DESCRIPTION: Creates and stores driver information and any related trips and statistics
+
+CLASSES:
+    Driver
+"""
+
 from .trip import Trip
 
-class Driver:
 
-     """Driver object to store name and trip information"""
-     def __init__(self, name):
-         self.name = name
-         self.trips = []
-         self.total_distance = 0
-         self.total_time = 0
-         self.avg_speed = 0
+class Driver(object):
+    """
+    Driver object to store name and trip information
 
-     def add_trip(self, start_time, end_time, distance):
-         """Adds  trip to the drivers trips"""
+    PROPERTIES:
+       name
+       trips
+       total_distance
+       total_time
+       avg_speed
 
-         trip = Trip(start_time, end_time, distance)
-         self.trips.append(trip)
+    PUBLIC METHODS:
+       add_trip
+    """
 
-         # Calculate the total distance, driving time, and speed as trips are added
-         self.total_distance = (self.calc_total_distance(self.trips))
-         self.total_time = self.calc_total_time(self.trips)
-         self.avg_speed = self.calc_avg_speed(self.total_distance, self.total_time)
+    def __init__(self, name):
+        self.name = name
+        self.trips = []
+        self.total_distance = 0
+        self.total_time = 0
+        self.avg_speed = 0
 
-     @staticmethod
-     def calc_total_distance(trips):
-         """Calculates total distance of a list of Trips objects"""
-         return  int(round(sum([trip.distance for trip in trips])))
+    def add_trip(self, start_time, end_time, distance):
+        """Adds  trip to the drivers trips"""
 
-     @staticmethod
-     def calc_total_time(trips):
-         """Calculates total driving time of a driver in minutes"""
-         return int(round(sum([trip.duration for trip in trips])))
+        trip = Trip(start_time, end_time, distance)
+        self.trips.append(trip)
 
-     @staticmethod
-     def calc_avg_speed(distance, time):
-         """Calculates average speed in mph given distance in miles and time in minutes"""
-         return(int(round((distance/float(time)) * 60)))
+        # Calculate the total distance, driving time, and speed as trips are added
+        self.total_distance = (self.calc_total_distance(self.trips))
+        self.total_time = self.calc_total_time(self.trips)
+        self.avg_speed = self.calc_avg_speed(self.total_distance, self.total_time)
+
+    @staticmethod
+    def calc_total_distance(trips):
+        """Calculates total distance of a list of Trips objects"""
+        return int(round(sum([trip.distance for trip in trips])))
+
+    @staticmethod
+    def calc_total_time(trips):
+        """Calculates total driving time of a driver in minutes"""
+        return int(round(sum([trip.duration for trip in trips])))
+
+    @staticmethod
+    def calc_avg_speed(distance, time):
+        """Calculates average speed in mph given distance in miles and time in minutes"""
+        return int(round((distance / float(time)) * 60))
+

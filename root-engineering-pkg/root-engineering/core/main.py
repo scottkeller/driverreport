@@ -1,3 +1,13 @@
+"""
+MODULE: core.trip
+DESCRIPTION: Stores trip information in a Trip object
+
+METHODS:
+    driver_report - creates reports driver and trip information from a given input file
+    read_file - helper method to read a file
+    resolve_path - helper method for resolving relative paths to absolute paths
+"""
+
 import os
 import sys
 import codecs
@@ -12,8 +22,8 @@ def driver_report(path):
     data = read_file(path).readlines()
     # Loop through the arguments in the file separating
     # the first arg as the command and the rest as params
-    for ln in data:
-        args = ln.strip().split(' ')
+    for line in data:
+        args = line.strip().split(' ')
         command = args.pop(0)
 
         # add a driver
@@ -37,9 +47,7 @@ def driver_report(path):
 
             # throw an error if the driver
             except KeyError:
-                print(drivers)
-                print(name)
-                print('Error: Driver not found!')
+                print 'Error: Driver not found!'
                 sys.exit(-1)
 
     # Convert drivers from drivers dict and sort by total distance
@@ -48,10 +56,10 @@ def driver_report(path):
 
     report = ""
     # # Build the report string and print it for each driver
-    for i, d in enumerate(added_drivers):
-        report_line = '{}: {} miles'.format(d.name, d.total_distance)
-        if d.avg_speed > 0:
-            report_line = '{} @ {} mph'.format(report_line, d.avg_speed)
+    for i, driver in enumerate(added_drivers):
+        report_line = '{}: {} miles'.format(driver.name, driver.total_distance)
+        if driver.avg_speed > 0:
+            report_line = '{} @ {} mph'.format(report_line, driver.avg_speed)
         # Add new line only if this is not the last driver
         if i < len(added_drivers) -1:
             report_line += '\n'
@@ -78,4 +86,4 @@ def resolve_path(path):
 
 
 if __name__ == "__main__":
-    print(driver_report(sys.argv[1]))
+    print driver_report(sys.argv[1])
