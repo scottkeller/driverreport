@@ -55,17 +55,19 @@ Any trips that average a speed of less than 5mph or greater than 100mph will be 
 
 
 ### Tests
-Tests are located in the "driver-report-pkg/driver-report/tests" directory. To run tests:
+Tests are located in the "driverreport-pkg/driverreport/tests" directory. To run tests:
 
-    cd driver-report-pkg/
+    cd driverreport-pkg/
+
+    # And then run using setup.py
+
     python setup.py test
 
-    #OR
+    # OR using unittest discovery
 
     python -m unittest discover -v
 
 ##### Sample Test Output:
-    test_add_single_trip (driverreport.tests.test_driver.TestDriver)
     Tests adding a single trip ... ok
     test_avg_speed (driverreport.tests.test_driver.TestDriver)
     Tests average speed calculation ... ok
@@ -73,19 +75,21 @@ Tests are located in the "driver-report-pkg/driver-report/tests" directory. To r
     Tests that  self.driver exists ... ok
     test_driver_name (driverreport.tests.test_driver.TestDriver)
     Tests that names can be correctly added ... ok
+    test_invalid_avg_speed (driverreport.tests.test_driver.TestDriver)
+    Tests trips are discarded that average less than 5mph or more than 100mph ... ok
     test_multiple_trips (driverreport.tests.test_driver.TestDriver)
     Tests adding multiple trips ... ok
     test_total_distance (driverreport.tests.test_driver.TestDriver)
     Tests total distance calculation ... ok
     test_total_time (driverreport.tests.test_driver.TestDriver)
     Tests total driving time calculation ... ok
-    test_trip_atrrbutes (driverreport.tests.test_trip.TestTrip)
-    Tests the setting of Trip attributes ... ok
-    test_trip_exists (driverreport.tests.test_trip.TestTrip)
-    Tests that the trip property exists ... ok
     test_read_file (driverreport.tests.test_main.TestMain)
     Tests that files can be read ... ok
     test_report_from_input (driverreport.tests.test_main.TestMain)
     Tests that reports are generated as expected ... ok
+    test_trip_atrrbutes (driverreport.tests.test_trip.TestTrip)
+    Tests the setting of Trip attributes ... ok
+    test_trip_exists (driverreport.tests.test_trip.TestTrip)
+    Tests that the trip property exists ... ok
 
 
