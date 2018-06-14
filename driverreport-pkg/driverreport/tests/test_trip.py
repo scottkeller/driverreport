@@ -4,7 +4,7 @@ DESCRIPTION: Runs unit tests on the trip module
 """
 
 import unittest
-from core.trip import Trip
+from ..core.trip import Trip
 
 # Constants
 TIME_FORMAT = '%H:%M'

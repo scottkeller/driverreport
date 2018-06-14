@@ -3,8 +3,8 @@ MODULE: test_driver.py
 DESCRIPTION: Runs unit tests on the driver module
 """
 import unittest
-from core.driver import Driver
-from core.trip import Trip
+from ..core.driver import Driver
+from ..core.trip import Trip
 
 # Constants
 TIME_FORMAT = '%H:%M'
