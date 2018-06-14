@@ -3,10 +3,29 @@
 ### Description
 Driver report is a python utility for generating reports driver trip statistics.
 It accepts an input file with commands to add drivers and their trips. It generates
-a report of each driver, their totals miles driven, and their average speed in MPH.
+a report of each driver, their totals miles driven, and their average speed in MPH, sorted
+from the most miles driven to the least. It discards any trips that average a speed of less than
+5mph or greater than 100mph.
+
+### Approach
+My approach to this solving this problem was to utilize TDD in Python in an object oriented manner. The most logical
+implementation to me was to create a "Trip" class and a "Driver" class and have the "Driver" class contain
+a "trips" attribute that stored "Trip" instances associated with that driver. It also
+seemed logical to add trip statistic attributes (such as average speed and total driving distance)
+to the driver and have them recalculated whenever a new, valid trip was added.
+
+For running the app, I knew I wanted to implement a fully installable CLI rather than
+just a simple script. I used the [Google Fire](https://github.com/google/python-fire) package
+to implement this, as it is one of my favorite, lightweight cli packages that I use every day.
+
+The project is structured as it is, so that it can be imported as a module OR run as a standalone cli.
+This is a pattern I believe in and have used many times with Python where a CLI is applicable.
+
+I hope you enjoy the project. Thank you!
 
 ### Installation
-    ## from the root driverreport repository directory
+    # from the driverreport repository root directory
+
     pip install -e ./driverreport-pkg
 
 ### Input File
@@ -16,7 +35,7 @@ accepts "driver name", "start time", "end time", and "miles". Time arguments sho
 Drivers MUST be added before they can have trips associated with them. Each command should be on a separate line of the file.
 
 ###### NOTE:
-Any trips that average a speed of less then 5mph or greater than 100mph will be discarded.
+Any trips that average a speed of less than 5mph or greater than 100mph will be discarded.
 
 ##### Sample Input:
     Driver Dan
